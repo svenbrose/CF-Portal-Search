@@ -1,0 +1,7 @@
+*.log
+.git/
+.local/
+.screenshots/
+*screenhot*/
+Documentation/
+*log.txt
