@@ -14,8 +14,8 @@
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_SearchTerm" Type="InArgument(x:String)" />
-    <x:Property Name="in_out_DTResults" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_Portal" Type="InArgument(x:String)" />
+    <x:Property Name="io_DTPortalSearchResults" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -71,7 +71,6 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Search" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -107,7 +106,13 @@
                 <FlowDecision.True>
                   <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_10">
                     <Sequence DisplayName="Results more then 10" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                      <ui:BuildDataTable DataTable="[DTSearchResults]" DisplayName="Build Data Table" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Suchbegriff&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Bezeichnung_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Vergabestelle_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Ort_x0020_der_x0020_Leistungserbringung_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Verfahrensart&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Nächste_x0020_Frist&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Deadline&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Veröffentlicht&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;URL&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName /&gt;&#xA;&lt;/NewDataSet&gt;" />
+                      <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                        <ui:CommentOut.Body>
+                          <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                            <ui:BuildDataTable DataTable="[DTSearchResults]" DisplayName="Build Data Table" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Suchbegriff&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Bezeichnung_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Vergabestelle_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Ort_x0020_der_x0020_Leistungserbringung_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Verfahrensart&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Nächste_x0020_Frist&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Deadline&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Veröffentlicht&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;URL&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName /&gt;&#xA;&lt;/NewDataSet&gt;" />
+                          </Sequence>
+                        </ui:CommentOut.Body>
+                      </ui:CommentOut>
                       <While DisplayName="While 1" sap2010:WorkflowViewState.IdRef="While_3">
                         <While.Variables>
                           <Variable x:TypeArguments="x:Boolean" Default="True" Name="NotLastPage" />
@@ -218,7 +223,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[Published]</OutArgument>
                                                 </ui:GetValue.Value>
                                               </ui:GetValue>
-                                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Portal, in_SearchTerm, Description, PublicEntity, Location, Procedure, Deadline, Published, URL}]" DataTable="[in_out_DTResults]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Portal, in_SearchTerm, Description, PublicEntity, Location, Procedure, Deadline, Published, URL}]" DataTable="[io_DTPortalSearchResults]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                                             </Sequence>
                                           </TryCatch.Try>
                                           <TryCatch.Catches>
@@ -394,7 +399,7 @@
                                     <OutArgument x:TypeArguments="x:String">[Published]</OutArgument>
                                   </ui:GetValue.Value>
                                 </ui:GetValue>
-                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Portal, in_SearchTerm, Description, PublicEntity, Location, Procedure, Deadline, Published, URL}]" DataTable="[in_out_DTResults]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Portal, in_SearchTerm, Description, PublicEntity, Location, Procedure, Deadline, Published, URL}]" DataTable="[io_DTPortalSearchResults]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                               </Sequence>
                             </If.Then>
                           </If>
@@ -422,7 +427,7 @@
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <sads:DebugSymbol.Symbol>d0tDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXFVpUGF0aFxDRl9QdWJsaWNfVGVuZGVyX1Jlc2VhcmNoXEJNV0lcU2VhcmNoLnhhbWx4TQOqAw8CAQFbCWEZAwHBAWQNaCIDAbwBaj9qTQMBugGoAhWbAyACAXBtFaMCIAIBAmaLAWbPAgMBwAFm2gJm3gIDAb8BZFdkZQMBvQGqAkWqAkgCAXGsAheaAx8CAXJuF26wEQIBbW8XogIfAgEDrgJJrgJPAgFzsQIZmQMkAgF2sAIqsAI2AgF0bjRuRwIBbnFJcU8CAQVyR3JKAgEEdRmhAiQCAQh0KnQ3AgEGsgIbtgIwAwG0AbcCG5ADIAIBfJEDG5gDJAIBd3YboAIgAgEJtAKZAbQCzwIDAbgBtALaArQC4AIDAbcBsgJwsgJ+AwG1AbcCKbcCNwIBfbkCH44DKgIBf5YDRZYDTAIBepMDRpMDSwIBeHYpdjgCAQp4H54CKgIBDLoCIcECLwMBrwHCAiHQAiwDAawB0QIh3wIsAwGqAeACIeQCNwMBpgHlAiHsAi8DAaEB7QIh9AIvAwGcAfUCIfwCLwMBlwH9AiGEAy8DAZIBhQMhjAMvAwGNAY0DIY0DoAIDAYABeSH9ASkCAR7+ASGFAioCARmGAiGKAjYCAROLAiGdAiYCAQ2/Ak2/AloDAbABvAK0AbwC8gIDAbIBzgK0Ac4C8gIDAa0B3QK0Ad0CuAIDAasB4AKWAeACnAEDAakB4gJN4gJSAwGnAeoCTeoCWwMBogHnArQB5wL/AgMBpAHyAk3yAlcDAZ0B7wK0Ae8C9AIDAZ8B+gJN+gJYAwGYAfcCtAH3AuwCAwGaAYIDTYIDVwMBkwH/ArQB/wLsAgMBlQGKA02KA1gDAY4BhwO0AYcD7AIDAZABjQO/AY0D0wEDAYsBjQNMjQO0AQMBgQF7U3tZAgEgfFF8VAIBH38j/AEuAgEjfjR+QAIBIYMCS4MCUwIBHIACTIACUgIBGogCnwGIAr0CAgEXiALIAogCzgICARaGAmCGAm8CARSLAi+LAj4CAQ6NAiWbAjACARCAASWEAToCAWeFASXzASoCASn0ASX7AS4CASSZArgBmQLWAgIBEYIBowGCAdkCAgFrggHkAoIB6gICAWqAAXqAAYgBAgFohQEzhQFBAgEqhwEp8QE0AgEs+QFP+QFWAgEn9gFQ9gFVAgEliQEt3gE4AgEy5gEx7QE6AgEtigEvkQE9AgFikgEvoAE6AgFfoQEvrwE6AgFdsAEvtAFFAgFZtQEvvAE9AgFUvQEvxAE9AgFPxQEvzAE9AgFKzQEv1AE9AgFF1QEv3AE9AgFA3QEv3QGuAgIBM+sBW+sBYgIBMOgBXOgBYQIBLo8BW48BaAIBY4wBwgGMAfMCAgFlngHCAZ4B8wICAWCtAcIBrQHGAgIBXrABqAGwAa4BAgFcsgFbsgFgAgFaugFbugFpAgFVtwHCAbcBggMCAVfCAVvCAWUCAVC/AcIBvwGCAwIBUsoBW8oBZgIBS8cBwgHHAfoCAgFN0gFb0gFlAgFGzwHCAc8B+gICAUjaAVvaAWYCAUHXAcIB1wH6AgIBQ90BzQHdAeEBAgE+3QFa3QHCAQIBNA==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d2NDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcU2VhcmNoLnhhbWx3TAOvAw8CAQFaCWAZAwG/AWMNZyIDAboBaT9pTQMBuAGtAhWgAyACAW5sFagCIAIBAmWLAWXPAgMBvgFl2gJl3gIDAb0BY1djZQMBuwGvAkWvAkgCAW+xAhefAx8CAXBtF3MnAgFtdBenAh8CAQOzAkmzAk8CAXG2AhmeAyQCAXS1Aiq1AjYCAXJ2SXZPAgEFd0d3SgIBBHoZpgIkAgEIeSp5NwIBBrcCG7sCMAMBsgG8AhuVAyACAXqWAxudAyQCAXV7G6UCIAIBCbkCmQG5As8CAwG2AbkC2gK5AuACAwG1AbcCcLcCfgMBswG8Aim8AjcCAXu+Ah+TAyoCAX2bA0WbA0wCAXiYA0aYA0sCAXZ7KXs4AgEKfR+jAioCAQy/AiHGAi8DAa0BxwIh1QIsAwGqAdYCIeQCLAMBqAHlAiHpAjcDAaQB6gIh8QIvAwGfAfICIfkCLwMBmgH6AiGBAy8DAZUBggMhiQMvAwGQAYoDIZEDLwMBiwGSAyGSA6gCAgF+fiGCAikCAR6DAiGKAioCARmLAiGPAjYCAROQAiGiAiYCAQ3EAk3EAloDAa4BwQK0AcEC8gIDAbAB0wK0AdMC8gIDAasB4gK0AeICuAIDAakB5QKWAeUCnAEDAacB5wJN5wJSAwGlAe8CTe8CWwMBoAHsArQB7AL/AgMBogH3Ak33AlcDAZsB9AK0AfQC9AIDAZ0B/wJN/wJYAwGWAfwCtAH8AuwCAwGYAYcDTYcDVwMBkQGEA7QBhAPsAgMBkwGPA02PA1gDAYwBjAO0AYwD7AIDAY4BkgO/AZID2wEDAYkBkgNMkgO0AQIBf4ABU4ABWQIBIIEBUYEBVAIBH4QBI4ECLgIBI4MBNIMBQAIBIYgCS4gCUwIBHIUCTIUCUgIBGo0CnwGNAr0CAgEXjQLIAo0CzgICARaLAmCLAm8CARSQAi+QAj4CAQ6SAiWgAjACARCFASWJAToCAWeKASX4ASoCASn5ASWAAi4CASSeArgBngLWAgIBEYcBowGHAdkCAgFrhwHkAocB6gICAWqFAXqFAYgBAgFoigEzigFBAgEqjAEp9gE0AgEs/gFP/gFWAgEn+wFQ+wFVAgEljgEt4wE4AgEy6wEx8gE6AgEtjwEvlgE9AgFilwEvpQE6AgFfpgEvtAE6AgFdtQEvuQFFAgFZugEvwQE9AgFUwgEvyQE9AgFPygEv0QE9AgFK0gEv2QE9AgFF2gEv4QE9AgFA4gEv4gG2AgIBM/ABW/ABYgIBMO0BXO0BYQIBLpQBW5QBaAIBY5EBwgGRAfMCAgFlowHCAaMB8wICAWCyAcIBsgHGAgIBXrUBqAG1Aa4BAgFctwFbtwFgAgFavwFbvwFpAgFVvAHCAbwBggMCAVfHAVvHAWUCAVDEAcIBxAGCAwIBUs8BW88BZgIBS8wBwgHMAfoCAgFN1wFb1wFlAgFG1AHCAdQB+gICAUjfAVvfAWYCAUHcAcIB3AH6AgIBQ+IBzQHiAekBAgE+4gFa4gHCAQIBNA==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -449,7 +454,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="786,59">
+      <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="314,59">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -457,6 +462,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="336,183">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="786,261" />
       <sap2010:ViewStateData Id="UiElementExists_7" sap:VirtualizedContainerService.HintSize="543,106" />
       <sap2010:ViewStateData Id="GetValue_3" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Click_7" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -515,7 +528,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="While_3" sap:VirtualizedContainerService.HintSize="786,3585" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="808,4010">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -558,7 +571,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="512,2052" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="534,2176">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

@@ -137,9 +137,10 @@
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitiAllApplications workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\InitAllApplications.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
-                    <OutArgument x:TypeArguments="x:Int32" x:Key="out_PortalCount">[PortalCount]</OutArgument>
-                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_PortalValuesDT">[PortalValuesDT]</OutArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTActivePortals">[TransactionData]</OutArgument>
                     <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTSearchResults">[DTSearchResults]</OutArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTSearchResultsTemplate">[DTSearchResultsTemplate]</OutArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTSearchTerms">[DTSearchTerms]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
               </Sequence>
@@ -199,8 +200,6 @@
                                 <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField2">[TransactionField2]</OutArgument>
                                 <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionID">[TransactionID]</OutArgument>
                                 <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">[TransactionData]</InOutArgument>
-                                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_PortalValuesDT">[PortalValuesDT]</InArgument>
-                                <InArgument x:TypeArguments="x:Int32" x:Key="in_PortalCount">[PortalCount]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                           </TryCatch.Try>
@@ -249,7 +248,9 @@
                                   <ui:InvokeWorkflowFile.Arguments>
                                     <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
                                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
-                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="in_out_DTSearchResults">[DTSearchResults]</InOutArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTSearchResults">[DTSearchResults]</InOutArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTSearchResultsTemplate">[DTSearchResultsTemplate]</InOutArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTSearchTerms">[DTSearchTerms]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                               </Sequence>
@@ -322,47 +323,9 @@
                           </TryCatch>
                         </State.Entry>
                         <State.Transitions>
-                          <Transition DisplayName="Error" sap2010:WorkflowViewState.IdRef="Transition_4" To="{x:Reference __ReferenceID0}">
-                            <Transition.Action>
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Int32">[TransactionNumber]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Int32">[TransactionNumber+1]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                            </Transition.Action>
-                            <Transition.Condition>[SystemError IsNot Nothing]</Transition.Condition>
-                          </Transition>
-                          <Transition DisplayName="Rule Exception" sap2010:WorkflowViewState.IdRef="Transition_1" To="{x:Reference __ReferenceID1}">
-                            <Transition.Action>
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Int32">[TransactionNumber]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Int32">[TransactionNumber+1]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                            </Transition.Action>
-                            <Transition.Condition>[BusinessRuleException IsNot Nothing]</Transition.Condition>
-                          </Transition>
-                          <Transition sap2010:Annotation.AnnotationText="No need for any action here, in case of success simply go to next transaction" DisplayName="Success" sap2010:WorkflowViewState.IdRef="Transition_5" To="{x:Reference __ReferenceID1}">
-                            <Transition.Action>
-                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_23">
-                                <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:Int32">[TransactionNumber]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:Int32">[TransactionNumber+1]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </Sequence>
-                            </Transition.Action>
-                            <Transition.Condition>[SystemError Is Nothing And BusinessRuleException is Nothing]</Transition.Condition>
-                          </Transition>
+                          <Transition DisplayName="Error" sap2010:WorkflowViewState.IdRef="Transition_4" To="{x:Reference __ReferenceID0}" Condition="[SystemError IsNot Nothing]" />
+                          <Transition DisplayName="Rule Exception" sap2010:WorkflowViewState.IdRef="Transition_1" To="{x:Reference __ReferenceID1}" Condition="[BusinessRuleException IsNot Nothing]" />
+                          <Transition sap2010:Annotation.AnnotationText="No need for any action here, in case of success simply go to next transaction" DisplayName="Success" sap2010:WorkflowViewState.IdRef="Transition_5" To="{x:Reference __ReferenceID1}" Condition="[SystemError Is Nothing And BusinessRuleException is Nothing]" />
                         </State.Transitions>
                       </State>
                     </Transition.To>
@@ -380,7 +343,7 @@
                               <Sequence sap2010:WorkflowViewState.IdRef="Sequence_27">
                                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke EvaluateResults workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="EvaluateResults.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_out_DTSearchResults">[DTSearchResults]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DTSearchResults">[DTSearchResults]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                                 <Sequence DisplayName="End of process activities" sap2010:WorkflowViewState.IdRef="Sequence_20">
@@ -450,11 +413,11 @@
       <Variable x:TypeArguments="x:String" Name="TransactionField1" />
       <Variable x:TypeArguments="x:String" Name="TransactionID" />
       <Variable x:TypeArguments="sd:DataTable" Name="TransactionData" />
-      <Variable x:TypeArguments="sd:DataTable" Name="PortalValuesDT" />
-      <Variable x:TypeArguments="x:Int32" Name="PortalCount" />
-      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="DTSearchResults" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DTSearchResults" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DTSearchResultsTemplate" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DTSearchTerms" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>d0RDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXFVpUGF0aFxDRl9QdWJsaWNfVGVuZGVyX1Jlc2VhcmNoXE1haW4ueGFtbIsBUgPKAxICAQG+AzO+AzYDAdMBwAMzwAM2AwHSAccDOMcDVQMB0QGpAQ+mAxcDAZgB6wEX7wIfAgFO+AIXngMfAgE8VAe0Aw8CAQKrARPmAR4DAaMB9AIr9AJKAwGhAfICF/IC4QEDAZ0BowMrowNHAwGcAaEDF6EDyAEDAZoB7QEbwgImAgFl0AIz0AJOAgFixwIfzgIoAgFd3QIz3QJYAgFc1AIf2wIoAgFX7AIz7AJwAgFW4QIf6gIqAgFQ+gIbnAMmAgE+VgukARYCAQ6rAyOrAzsCAQupAw+pA50BAgEKsQMjsQM+AgEIrwMPrwP2AQIBBK8BFa8BiwEDAc4BsAEV5QEaAwGkAfIChQHyAt4BAwGeAaEDhQGhA8UBAwGbAe8BH/8BKgMBiwGmAh/AAioCAXKHAiOQAi4CAWyYAiOhAi4CAWbMAknMAl4CAWDJAkrJAl0CAV7ZAknZAl4CAVrWAkrWAl0CAVjiAiHpAioCAVH8Ah+JAyoCAUaRAyOYAy4CAT9YD5EBGgIBFJkBE6ABHAIBD68Dfa8D8wECAQWvAXqvAYgBAwHPAbABI7ABMQMBpQGyARm8ASQDAccBvwEZ4wEkAwGnAfABIfcBKgMBlAH4ASH+ATkDAYwBqAIjtAI7AgF3vAInvAKHAgIBc4gCJY8CLgIBbZkCJaACLgIBZ+cCS+cCYAIBVOQCTOQCXwIBUv0CIYEDOQIBSoIDIYgDLAIBR5IDJZIDiQICAUKTAyWXAz0CAUBZEWAaAgE4YRGIARYCAR+JARGQASkCARWeAUGeAUwCARKbAUKbAU8CARCzARuzAbcBAwHMAbQBG7sBJAMByAHBAR3NATUDAbMB1QEh3wEsAwGoAfUBXPUBZQMBlwHyAV3yAXQDAZUB/AFy/AGDAQMBkgH7AXj7AYABAwGQAfoBafoBegMBjgH4AdsB+AHpAQMBjQGrAmirAnUDAYkBrAJ/rAKWAQMBhwGxAmuxAn4DAYUBsAJrsAJ+AwGDAa4CZ64CdAMBgQGqAnqqAoIBAgF/rQJrrQJ8AgF9rwJtrwKAAQIBe7ICZ7ICdgIBeagC4AGoAoUCAgF4vAKWAbwChAICAXSNAmCNAmsCAXCKAmGKAngCAW6eAlOeAl4CAWqbAlSbAmECAWj/Am//AoABAgFM/QLZAf0C7wECAUuDAyOHAzsCAUiSA5MBkgOGAgIBQ5MD3QGTA/4BAgFBXj9eSAIBO1tAW00CATlhH2E0AgEgYxWGASACASKOAV2OAW4CAR2MAVSMAWECARuNAVyNAWwCARmLAWiLAXACAReJAc0BiQHxAQIBFrMBjgGzAbQBAwHNAbkBSLkBUQMBywG2AUm2AVoDAckBxwFnxwF6AwHFAcYBZ8YBegMBwwHIAWPIAXIDAcEBywFeywFrAwG/AcoBZsoBdgMBvQHFAWfFAXgDAbsBwwFkwwF3AwG5AcQBdMQBfAMBtwHJAWrJAXsDAbUBwQHYAcEB+wEDAbQB1gEj1gG+AgMBrQHXASPeASwDAakBgwPfAYMDhAICAUlkF2ovAgEyaxd7IgIBKHwXgAEvAgEmgQEXhQEpAgEj1gGSAdYBuwIDAa4B3AFQ3AFZAwGsAdkBUdkBYgMBqgFocGh4AgE2ZM8BZO8BAgE1Z1xndwIBNGZYZmgCATNsGXoeAgEpfNABfPEBAgEngwFjgwGQAQIBJGwnbFoCASpuHXUmAgEteB14hQICASxzSHNfAgEwcElwagIBLg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1VDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcTWFpbi54YW1sgQFSA6UDEgIBAZkDM5kDNgMBxAGbAzObAzYDAcMBqgEPgQMXAwGOAeoBF8oCHwIBUNMCF/kCHwIBPlQHjwMPAgECrAET5QEeAwGZAc8CK88CSgMBlwHNAhfNAuEBAwGTAf4CK/4CRwMBkgH8Ahf8AsgBAwGQAewBG8MCJgIBV8YClgHGArMBAgFUxwKfAccCxgECAVPIAooCyALJAgIBUtUCG/cCJgIBQFYLpQEWAgEOhgMjhgM7AgELhAMPhAOdAQIBCowDI4wDPgIBCIoDD4oD9gECAQSwARWwAYsBAwHAAbEBFeQBGgMBmgHNAoUBzQLeAQMBlAH8AoUB/ALFAQMBkQHuAR+AAioCAX2nAh/BAioCAWSIAiORAi4CAV6ZAiOiAi4CAVjXAh/kAioCAUjsAiPzAi4CAUFYD5IBGgIBFJoBE6EBHAIBD4oDfYoD8wECAQWwAXqwAYgBAwHBAbEBI7EBMQMBmwGzARm9ASQDAbkBwAEZ4gEkAwGdAe8BIfYBKgMBigH3ASH/ATkCAX6pAiO1AjsCAWm9Aie9AocCAgFliQIlkAIuAgFfmgIloQIuAgFZ2AIh3AI5AgFM3QIh4wIsAgFJ7QIl7QKJAgIBRO4CJfICPQIBQlkRYBoCATphEYgBFgIBIYkBEZEBKQIBFZ8BQZ8BTAIBEpwBQpwBTwIBELQBG7QBtwEDAb4BtQEbvAEkAwG6AcIBHcwBNQMBqQHUASHeASwDAZ4B9AFc9AFlAwGNAfEBXfEBdAMBiwH8AXb8AY8BAwGIAf0Baf0BeAMBhgH6AXj6AYABAwGEAfkBafkBegMBggH7AW77AX8DAYAB9wHbAfcB6QECAX+sAmisAnUCAXutAn+tApYBAgF5sgJrsgJ+AgF3sQJrsQJ+AgF1rwJnrwJ0AgFzqwJ6qwKCAQIBca4Ca64CfAIBb7ACbbACgAECAW2zAmezAnYCAWupAuABqQKFAgIBar0ClgG9AoQCAgFmjgJgjgJrAgFiiwJhiwJ4AgFgnwJTnwJeAgFcnAJUnAJhAgFa2gJr2gJ8AgFO2ALZAdgC7wECAU3eAiPiAjsCAUrtApMB7QKGAgIBRe4C3QHuAv4BAgFDXj9eSAIBPVtAW00CATthH2E0AgEiYxWGASACASSNAV2NAW4CAR+PAVuPAWoCAR2LAWiLAXACARuJAc0BiQHxAQIBGowBXYwBbgIBGI4BZY4BfgIBFrQBjgG0AbQBAwG/AboBSLoBUQMBvQG3AUm3AVoDAbsByAFnyAF6AwG3AccBZ8cBegMBtQHJAWPJAXIDAbMBxgFnxgF4AwGxAcQBZMQBdwMBrwHFAXTFAXwDAa0BygFqygF7AwGrAcIB2AHCAfsBAwGqAdUBI9UBvgIDAaMB1gEj3QEsAwGfAd4C3wHeAoQCAgFLZBdqLwIBNGsXeyICASp8F4ABLwIBKIEBF4UBKQIBJdUBkgHVAbsCAwGkAdsBUNsBWQMBogHYAVHYAWIDAaABaHBoeAIBOGTPAWTvAQIBN2dcZ3cCATZmWGZoAgE1bBl6HgIBK3zQAXzxAQIBKYMBY4MBkAECASZsJ2xaAgEsbh11JgIBL3gdeIUCAgEuc0hzXwIBMnBJcGoCATA=</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -635,7 +598,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="Transition_4" sap:VirtualizedContainerService.HintSize="430,505">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -646,7 +608,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="Transition_1" sap:VirtualizedContainerService.HintSize="430,505">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -657,15 +618,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="264,184">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="430,621">
+      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="430,547">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">443.25,522 443.25,549.4 535.5,549.4 535.5,249.4 505.5,249.4</av:PointCollection>
@@ -676,7 +629,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="462,2083">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="211,142">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">285,380</av:Point>
@@ -810,12 +763,12 @@
             <av:Point x:Key="ShapeLocation">70,12.5</av:Point>
             <x:Double x:Key="StateContainerWidth">800</x:Double>
             <x:Double x:Key="StateContainerHeight">600</x:Double>
-            <av:PointCollection x:Key="ConnectorLocation">130,50 160,50 160,52.5 274.5,52.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">130,50 184,50 184,52.5 274.5,52.5</av:PointCollection>
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main2_1" sap:VirtualizedContainerService.HintSize="854,758">
+      <sap2010:ViewStateData Id="Main2_1" sap:VirtualizedContainerService.HintSize="854,798">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>

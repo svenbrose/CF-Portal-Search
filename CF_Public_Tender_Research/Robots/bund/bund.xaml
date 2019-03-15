@@ -14,12 +14,11 @@
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="out_Result" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="argument1" Type="InArgument(x:String)" />
-    <x:Property Name="in_SearchTerms" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_Credentials" Type="InArgument(x:String)" />
     <x:Property Name="in_URL" Type="InArgument(x:String)" />
-    <x:Property Name="in_PortalName" Type="InArgument(x:String)" />
     <x:Property Name="in_TemplateResultSet" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_Portal" Type="InArgument(x:String)" />
+    <x:Property Name="in_DTSearchTerms" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -99,7 +98,7 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[in_SearchTerms]" DisplayName="For Each search item" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[in_DTSearchTerms]" DisplayName="For Each search item" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
             <ui:ForEachRow.Body>
               <ActivityAction x:TypeArguments="sd:DataRow">
                 <ActivityAction.Argument>
@@ -173,7 +172,7 @@
         </ActivityAction>
       </ui:OpenBrowser.Body>
     </ui:OpenBrowser>
-    <sads:DebugSymbol.Symbol>d2BVOlxFbnR3aWNrbHVuZ1xDRiBpbnRlcm5lcyBQcm9qZWt0IC0gUG9ydGFsc3VjaGVcQ0ZfUHVibGljX1RlbmRlcl9SZXNlYXJjaFxSb2JvdHNcYnVuZFxidW5kLnhhbWwoUQOxAQ4CAQFVBV8QAgEwYAWvARYCAQJWB10QAgE0Xgde1QwCATFguwFgxQECAS5mC6wBGwIBA1s2W0wCATdYN1hDAgE1XiReMQIBMmY8Zk4CASxsEakBHAIBBHITfx4CASOAAROEASgCAR6FAROoARgCAQV2FX0eAgEofhV+mgECASSCAZEBggGAAgIBIoIBiwKCAZECAgEhgAFPgAFdAgEfhQEhhQEvAgEGhwEXpgEiAgEIe0B7iAECASt4QXhJAgEpfoQBfpcBAgEliAEZjAEqAgEWjQEZpQEpAgEJiAHFDYgByg0CAR2KAawBigGZAgIBHIgBkAGIAZUBAgEbiAFViAFcAgEaiAFniAF7AgEYiAHEAYgBgQ0CAReNAUqNAV4CARSTAR+iASoCAQqZASGgASoCARChASGhAbwBAgELmwFPmwFXAgERoQFhoQFvAgEOoQFMoQFWAgEM</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d2FDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJ1bmRcQnVuZC54YW1sKFADsAEOAgEBVAVeEAIBMF8FrgEWAgECVQdcEAIBNF0HXdUMAgExX7sBX8UBAgEuZQurARsCAQNaNlpMAgE3VzdXQwIBNV0kXTECATJlPGVQAgEsaxGoARwCAQRxE34eAgEjfxODASgCAR6EAROnARgCAQV1FXweAgEofRV9mgECASSBAZEBgQGAAgIBIoEBiwKBAZECAgEhf09/XQIBH4QBIYQBLwIBBoYBF6UBIgIBCHpAeogBAgErd0F3SQIBKX2EAX2XAQIBJYcBGYsBKgIBFowBGaQBKQIBCYcBxQ2HAcoNAgEdiQGsAYkBmQICARyHAZABhwGVAQIBG4cBVYcBXAIBGocBZ4cBewIBGIcBxAGHAYENAgEXjAFKjAFeAgEUkgEfoQEqAgEKmAEhnwEqAgEQoAEhoAG8AQIBC5oBT5oBVwIBEaABYaABbwIBDqABTKABVgIBDA==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>

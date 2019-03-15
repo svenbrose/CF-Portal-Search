@@ -17,8 +17,6 @@
     <x:Property Name="out_TransactionField2" Type="OutArgument(x:String)" />
     <x:Property Name="out_TransactionID" Type="OutArgument(x:String)" />
     <x:Property Name="io_TransactionData" Type="InOutArgument(sd:DataTable)" />
-    <x:Property Name="in_PortalValuesDT" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="in_PortalCount" Type="InArgument(x:Int32)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -77,10 +75,11 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Description: Get data from spreadsheets, databases, email, web API or UiPath server queues. If no new data, set out_TransactionItem to Nothing. &#xA;&#xA;For a linear process (not repetitive), set out_TransactionItem only for in_TransactionNumber 1 - first and only transaction. &#xA;&#xA;If the process is repeatable, set io_TransactionData once for in_TransactionNumber 1, then assign a new out_TransactionItem by using the in_TransactionNumber to index io_TransactionData. Be aware that, at the end of the io_TransactionData collection, it is your responsibility to set out_TransactionItem to Nothing, thus ending the process." DisplayName="GetTransactionData" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <If Condition="[in_TransactionNumber &lt;= in_PortalCount]" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[in_TransactionNumber &lt;= io_TransactionData.Rows.COUNT]" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Assign DisplayName="Assign Transactionitem" sap2010:WorkflowViewState.IdRef="Assign_5">
@@ -88,7 +87,7 @@
               <OutArgument x:TypeArguments="sd:DataRow">[out_TransactionItem]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataRow">[in_PortalValuesDT.Rows(in_TransactionNumber-1)]</InArgument>
+              <InArgument x:TypeArguments="sd:DataRow">[io_TransactionData.Rows(in_TransactionNumber-1)]</InArgument>
             </Assign.Value>
           </Assign>
         </Sequence>
@@ -134,7 +133,7 @@
         </Sequence>
       </If.Then>
     </If>
-    <sads:DebugSymbol.Symbol>d1xDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXFVpUGF0aFxDRl9QdWJsaWNfVGVuZGVyX1Jlc2VhcmNoXEZyYW1ld29ya1xHZXRUcmFuc2FjdGlvbkRhdGEueGFtbBZSA4oBDgIBAVMFagoCARFrBYgBCgIBAlMTU0ACARJVCV4UAgEZYQloEgIBFWsTazgCAQNtCYYBFAIBBFYLXRQCARpmNmY/AgEYYzdjTAIBFm4LdRQCAQ12C30UAgEJfguFARQCAQVbOFtoAgEdWDlYTgIBG3M2c0QCARBwN3BKAgEOezZ7RAIBDHg3eE4CAQqDATaDAUQCAQiAATeAAU4CAQY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d21DOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcRnJhbWV3b3JrXEdldFRyYW5zYWN0aW9uRGF0YS54YW1sFlEDiQEOAgEBUgVpCgIBEWoFhwEKAgECUhNSTwIBElQJXRQCARdgCWcSAgETahNqOAIBA2wJhQEUAgEEVQtcFAIBGGU2ZT8CARZiN2JMAgEUbQt0FAIBDXULfBQCAQl9C4QBFAIBBVo4WmkCARtXOVdOAgEZcjZyRAIBEG83b0oCAQ56NnpEAgEMdzd3TgIBCoIBNoIBRAIBCH83f04CAQY=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
