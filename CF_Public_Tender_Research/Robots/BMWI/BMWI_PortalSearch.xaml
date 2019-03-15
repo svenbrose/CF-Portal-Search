@@ -13,8 +13,8 @@
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_DTSearchTerms" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="in_out_DTResults" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_Portal" Type="InArgument(x:String)" />
+    <x:Property Name="io_DTPortalSearchResults" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -74,13 +74,6 @@
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="BMWI_PortalSearch" sap2010:WorkflowViewState.IdRef="Sequence_3">
-    <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_6">
-          <ui:BuildDataTable DataTable="[DTSearchResults]" DisplayName="Build Data Table" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Suchbegriff&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Bezeichnung_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Vergabestelle_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Ort_x0020_der_x0020_Leistungserbringung_x0020_&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Verfahrensart&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Nächste_x0020_Frist&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Deadline&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Veröffentlicht&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;URL&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName /&gt;&#xA;&lt;/NewDataSet&gt;" />
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  https://www.evergabe...'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
       <ui:Click.CursorPosition>
         <ui:CursorPosition Position="Center">
@@ -224,57 +217,23 @@
             </ui:UiElementExists>
             <If Condition="[NoResults=false]" sap2010:WorkflowViewState.IdRef="If_3">
               <If.Then>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Search File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="BMWI\Search.xaml">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Search File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Robots\BMWI\Search.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_SearchTerm">[SearchTerm]</InArgument>
-                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="in_out_DTResults">[in_out_DTResults]</InOutArgument>
+                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTPortalSearchResults">[io_DTPortalSearchResults]</InOutArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_Portal">[in_Portal]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
               </If.Then>
             </If>
-            <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                  <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="results.xlsx">
-                    <ui:ExcelApplicationScope.Body>
-                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                          <ui:ExcelWriteRange AddHeaders="True" DataTable="[DTSearchResults]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Sheet1" StartingCell="A1" />
-                        </Sequence>
-                      </ActivityAction>
-                    </ui:ExcelApplicationScope.Body>
-                  </ui:ExcelApplicationScope>
-                </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <sads:DebugSymbol.Symbol>d1ZDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXFVpUGF0aFxDRl9QdWJsaWNfVGVuZGVyX1Jlc2VhcmNoXEJNV0lcQk1XSV9Qb3J0YWxTZWFyY2gueGFtbCtMA4MCDgIBAU0FUxUCATZUBWIQAgE0YwVxEAIBMnIFgAEQAgEwgQEFngEVAgEtnwEFgQIVAgECYJgBYKMCAgE1b5gBb6YCAgEzfpgBfpMCAgExgQG/AYEB1AECAS6cAZgBnAGJAgIBL58BNp8BSgIBK6UBC/4BFgIBA6sBDa8BHQIBJbABDbQBGwIBIbUBDcMBGAIBH8QBDcgBIgIBGskBDdsBEgIBFdwBDeABIgIBEOEBDesBEgIBBewBDf0BHQIBBK0BOa0BRQIBKasBogGrAakBAgEnqwFQqwFTAgEmsgGgAbIBkwICASSwAawCsAHDAgIBIsEBoAHBAYsCAgEgxgGLAcYBvAICAR7GAccCxgHNAgIBHcQBT8QBXwIBG8kBG8kBKwIBFssBEdkBHAIBGN4BiwHeAZYCAgEU3gGhAt4BpwICARPcAUvcAVgCARHhARvhAS4CAQbjARHpASkCAQjXAaQB1wGxAwIBGecBTucBWQIBDuMBuwHjAc0BAgEN5QFS5QFeAgEL5gFc5gFuAgEJ</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d25DOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSV9Qb3J0YWxTZWFyY2gueGFtbClMA+oBDgIBAU0FWxACATNcBWoQAgExawV5EAIBL3oFlwEVAgEsmAEF6AEVAgECWZgBWaMCAgE0aJgBaKYCAgEyd5gBd5MCAgEwer8BetQBAgEtlQGYAZUBiQICAS6YATaYAUoCASqeAQvlARYCAQOkAQ2oAR0CASSpAQ2tARsCASCuAQ28ARgCAR69AQ3BASICARnCAQ3UARICARTVAQ3ZASICAQ/aAQ3kARICAQSmATmmAUUCASikAaIBpAGpAQIBJqQBUKQBUwIBJasBoAGrAZMCAgEjqQGsAqkBwwICASG6AaABugGLAgIBH78BiwG/AbwCAgEdvwHHAr8BzQICARy9AU+9AV8CARrCARvCASsCARXEARHSARwCARfXAYsB1wGWAgIBE9cBoQLXAacCAgES1QFL1QFYAgEQ2gEb2gEuAgEF3AER4gEpAgEH0AGkAdABsQMCARjfAWTfAX4CAQ3gAU7gAVkCAQvcAbsB3AHUAQIBCt4BUt4BXgIBCA==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="314,59">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,183">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="516,261" />
       <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="516,106" />
       <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="516,106" />
       <sap2010:ViewStateData Id="Click_5" sap:VirtualizedContainerService.HintSize="516,106" />
@@ -288,45 +247,22 @@
       <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="464,106" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,235" />
-      <sap2010:ViewStateData Id="ExcelWriteRange_2" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="336,211">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,1369">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_2" sap:VirtualizedContainerService.HintSize="414,320">
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="516,1517" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="538,2253">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="436,444">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="464,522" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,1931">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="516,2079" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="538,3116">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BMWI_PortalSearch_1" sap:VirtualizedContainerService.HintSize="578,3196" />
+      <sap2010:ViewStateData Id="BMWI_PortalSearch_1" sap:VirtualizedContainerService.HintSize="578,2333" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
