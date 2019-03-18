@@ -71,10 +71,11 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="BMWI_PortalSearch" sap2010:WorkflowViewState.IdRef="Sequence_3">
-    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  https://www.evergabe...'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Ausschreibungssuche '" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
       <ui:Click.CursorPosition>
         <ui:CursorPosition Position="Center">
           <ui:CursorPosition.OffsetX>
@@ -89,7 +90,7 @@
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f7fe51416be713f32e1027c65f36d7ce" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl aaname='Ausschreibungssuche' parentid='navbar' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
       </ui:Click.Target>
     </ui:Click>
-    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  https://www.evergabe...'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Ausschreibungen suchen '" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
       <ui:Click.CursorPosition>
         <ui:CursorPosition Position="Center">
           <ui:CursorPosition.OffsetX>
@@ -104,51 +105,57 @@
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="46868cb7bf4cea901518599e94cb07f3" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl aaname='Ausschreibungen suchen' parentid='navbar' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
       </ui:Click.Target>
     </ui:Click>
-    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  https://www.evergabe...'" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0f0df9f45552ed63cf8015c6490d69f0" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl parentid='ausschreibungssuche' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
-      </ui:Click.Target>
-    </ui:Click>
-    <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  categories'" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="Informationstechnik">
-      <ui:SelectItem.Items>
-        <scg:List x:TypeArguments="x:String" Capacity="32">
-          <x:String>Arbeitsmarktdienstleistungen</x:String>
-          <x:String>Bauleistungen</x:String>
-          <x:String>Bekleidung, M&amp;ouml;bel und Druck</x:String>
-          <x:String>Dienstleistungen</x:String>
-          <x:String>Energiequellen</x:String>
-          <x:String>Fertigerzeugnisse</x:String>
-          <x:String>Forschung und Entwicklung</x:String>
-          <x:String>Informationstechnik</x:String>
-          <x:String>Kommunikations- und Elektrotechnik</x:String>
-          <x:String>Kraftfahrwesen</x:String>
-          <x:String>Lebensmittel</x:String>
-          <x:String>Lieferleistungen</x:String>
-          <x:String>Maschinen</x:String>
-          <x:String>Medizintechnik</x:String>
-          <x:String>Metalle, Nichtmetalle</x:String>
-          <x:String>Natürliche Erzeugnisse</x:String>
-          <x:String>Rohwasser, Reinwasser</x:String>
-          <x:String>Sanit&amp;auml;tswesen</x:String>
-          <x:String>Sekundärrohstoffe</x:String>
-          <x:String>Vorgefertigte Erzeugnisse</x:String>
-          <x:String>Waffen, Munition und technische Sonderger&amp;auml;te</x:String>
-        </scg:List>
-      </ui:SelectItem.Items>
-      <ui:SelectItem.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="151d5fd26ad02bcd1cd51309a9c06884" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl id='categories' tag='SELECT' /&gt;" WaitForReady="INTERACTIVE" />
-      </ui:SelectItem.Target>
-    </ui:SelectItem>
+    <ui:CommentOut DisplayName="Comment Out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Erweiterte Suche'" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0f0df9f45552ed63cf8015c6490d69f0" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl parentid='ausschreibungssuche' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'Auswahl Kategorien'" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="Informationstechnik">
+            <ui:SelectItem.Items>
+              <scg:List x:TypeArguments="x:String" Capacity="32">
+                <x:String>Arbeitsmarktdienstleistungen</x:String>
+                <x:String>Bauleistungen</x:String>
+                <x:String>Bekleidung, M&amp;ouml;bel und Druck</x:String>
+                <x:String>Dienstleistungen</x:String>
+                <x:String>Energiequellen</x:String>
+                <x:String>Fertigerzeugnisse</x:String>
+                <x:String>Forschung und Entwicklung</x:String>
+                <x:String>Informationstechnik</x:String>
+                <x:String>Kommunikations- und Elektrotechnik</x:String>
+                <x:String>Kraftfahrwesen</x:String>
+                <x:String>Lebensmittel</x:String>
+                <x:String>Lieferleistungen</x:String>
+                <x:String>Maschinen</x:String>
+                <x:String>Medizintechnik</x:String>
+                <x:String>Metalle, Nichtmetalle</x:String>
+                <x:String>Natürliche Erzeugnisse</x:String>
+                <x:String>Rohwasser, Reinwasser</x:String>
+                <x:String>Sanit&amp;auml;tswesen</x:String>
+                <x:String>Sekundärrohstoffe</x:String>
+                <x:String>Vorgefertigte Erzeugnisse</x:String>
+                <x:String>Waffen, Munition und technische Sonderger&amp;auml;te</x:String>
+              </scg:List>
+            </ui:SelectItem.Items>
+            <ui:SelectItem.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="151d5fd26ad02bcd1cd51309a9c06884" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl id='categories' tag='SELECT' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:SelectItem.Target>
+          </ui:SelectItem>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
     <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[in_DTSearchTerms]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
@@ -171,29 +178,19 @@
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a8558d88576dcc5d14a57565d7397055" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl id='keywordString' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
               </ui:TypeInto.Target>
             </ui:TypeInto>
-            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  id7d'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="fae558f9e91012deca8f3b9718deac65" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl id='id7d' tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:UiElementExists DisplayName="Element Exists 'A  id1a'" Exists="[AutoComplete]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey 'Enter'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:UiElementExists DisplayName="Element Exists 'Autovervollständigen'" Exists="[AutoComplete]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="a2d621fe743ac0fa182a7c15633dda05" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='e-Vergabe, die Vergabeplattform des Bundes - Internet Explorer' /&gt;&lt;wnd aaname='Benachrichtigung' cls='DirectUIHWND' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[AutoComplete]" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[AutoComplete]" DisplayName="If Autovervollständigen=true" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  id1a'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Nein'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                   <ui:Click.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -210,12 +207,12 @@
                 </ui:Click>
               </If.Then>
             </If>
-            <ui:UiElementExists DisplayName="Element Exists 'DIV'" Exists="[NoResults]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+            <ui:UiElementExists DisplayName="Element Exists 'Kein Ergebnis'" Exists="[NoResults]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1b8d06584acc0de269f8278a23504293" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl parentid='datatable' tag='DIV' rowName='Kein Ergebnis' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[NoResults=false]" sap2010:WorkflowViewState.IdRef="If_3">
+            <If Condition="[NoResults=false]" DisplayName="If Results found" sap2010:WorkflowViewState.IdRef="If_3">
               <If.Then>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Search File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Robots\BMWI\Search.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
@@ -225,44 +222,72 @@
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
               </If.Then>
+              <If.Else>
+                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Portal, SearchTerm.ToString, &quot;***keine Ergebnisse***&quot;}]" DataTable="[io_DTPortalSearchResults]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+              </If.Else>
             </If>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  https://www.evergabe...'" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="57583b6edf7ff3e9314fd33f0cd3bf41" Selector="&lt;html title='e-Vergabe, die Vergabeplattform des Bundes' /&gt;&lt;webctrl aaname='Ausschreibungen suchen' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;a' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <sads:DebugSymbol.Symbol>d25DOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSV9Qb3J0YWxTZWFyY2gueGFtbClMA+oBDgIBAU0FWxACATNcBWoQAgExawV5EAIBL3oFlwEVAgEsmAEF6AEVAgECWZgBWaMCAgE0aJgBaKYCAgEyd5gBd5MCAgEwer8BetQBAgEtlQGYAZUBiQICAS6YATaYAUoCASqeAQvlARYCAQOkAQ2oAR0CASSpAQ2tARsCASCuAQ28ARgCAR69AQ3BASICARnCAQ3UARICARTVAQ3ZASICAQ/aAQ3kARICAQSmATmmAUUCASikAaIBpAGpAQIBJqQBUKQBUwIBJasBoAGrAZMCAgEjqQGsAqkBwwICASG6AaABugGLAgIBH78BiwG/AbwCAgEdvwHHAr8BzQICARy9AU+9AV8CARrCARvCASsCARXEARHSARwCARfXAYsB1wGWAgIBE9cBoQLXAacCAgES1QFL1QFYAgEQ2gEb2gEuAgEF3AER4gEpAgEH0AGkAdABsQMCARjfAWTfAX4CAQ3gAU7gAVkCAQvcAbsB3AHUAQIBCt4BUt4BXgIBCA==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d25DOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSV9Qb3J0YWxTZWFyY2gueGFtbCpNA/kBDgIBAU4FXBACATddBWsQAgE1bAWeARUCATSfAQX3ARUCAQJamAFaowICAThpmAFppgICATafATafAUoCATKlAQv0ARYCAQOrAQ2vAR0CASywAQ20ARsCASi1AQ25AR0CASa6AQ2+ASICASG/AQ3RARICARzSAQ3WASICARfXAQ3kARICAQblAQ3zARgCAQStATmtAUUCATCrAaIBqwGpAQIBLqsBUKsBUwIBLbIBoAGyAZMCAgErsAGsArABwwICASm1AfQBtQH7AQIBJ7wBiwG8AbwCAgElvAHHArwBzQICASS6AVy6AWwCASK/ARu/ASsCAR3BARHPARwCAR/UAYsB1AGWAgIBG9QBoQLUAacCAgEa0gFV0gFiAgEY1wEb1wEuAgEH2QER3wEpAgEP4gER4gH4AQIBCfEBoAHxAe4CAgEFzQGkAc0BsQMCASDcAWTcAX4CARXdAU7dAVkCARPZAbsB2QHUAQIBEtsBUtsBXgIBEOIBjwHiAasBAgEN4gE84gGEAQIBCg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="516,106" />
-      <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="516,106" />
-      <sap2010:ViewStateData Id="Click_5" sap:VirtualizedContainerService.HintSize="516,106" />
-      <sap2010:ViewStateData Id="SelectItem_2" sap:VirtualizedContainerService.HintSize="516,134" />
-      <sap2010:ViewStateData Id="GetRowItem_1" sap:VirtualizedContainerService.HintSize="464,64" />
-      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="464,134" />
-      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="464,106" />
-      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="591,106" />
+      <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="591,106" />
+      <sap2010:ViewStateData Id="Click_5" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="SelectItem_2" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="591,482" />
+      <sap2010:ViewStateData Id="GetRowItem_1" sap:VirtualizedContainerService.HintSize="539,64" />
+      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="539,134" />
+      <sap2010:ViewStateData Id="SendHotkey_1" sap:VirtualizedContainerService.HintSize="539,116" />
+      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="539,106" />
       <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,254" />
-      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="539,254" />
+      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="539,106" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,235" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,1369">
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="539,235" />
+      <sap2010:ViewStateData Id="Click_6" sap:VirtualizedContainerService.HintSize="539,106" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="561,1525">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="516,1517" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="538,2253">
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="591,1673" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="613,2611">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BMWI_PortalSearch_1" sap:VirtualizedContainerService.HintSize="578,2333" />
+      <sap2010:ViewStateData Id="BMWI_PortalSearch_1" sap:VirtualizedContainerService.HintSize="578,2545" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

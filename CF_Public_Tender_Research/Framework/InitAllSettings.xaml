@@ -136,23 +136,25 @@
                 </ActivityAction.Argument>
                 <TryCatch DisplayName="Try Get Asset" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                   <TryCatch.Try>
-                    <Sequence DisplayName="Get asset value" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="ui:GenericValue" Name="assetValue" />
-                      </Sequence.Variables>
-                      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[row(&quot;Asset&quot;).ToString]" DisplayName="Get Asset Value" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
-                        <ui:GetRobotAsset.Value>
-                          <OutArgument x:TypeArguments="ui:GenericValue">[assetValue]</OutArgument>
-                        </ui:GetRobotAsset.Value>
-                      </ui:GetRobotAsset>
-                      <Assign DisplayName="Set Asset Value" sap2010:WorkflowViewState.IdRef="Assign_23">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[out_Config(row("Name").ToString)]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[assetValue]</InArgument>
-                        </Assign.Value>
-                      </Assign>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <Sequence DisplayName="Get asset value" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="ui:GenericValue" Name="assetValue" />
+                        </Sequence.Variables>
+                        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[row(&quot;Asset&quot;).ToString]" DisplayName="Get Asset Value" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+                          <ui:GetRobotAsset.Value>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[assetValue]</OutArgument>
+                          </ui:GetRobotAsset.Value>
+                        </ui:GetRobotAsset>
+                        <Assign DisplayName="Set Asset Value" sap2010:WorkflowViewState.IdRef="Assign_23">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[out_Config(row("Name").ToString)]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[assetValue]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
                     </Sequence>
                   </TryCatch.Try>
                   <TryCatch.Catches>
@@ -186,7 +188,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>d1lDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXFVpUGF0aFxDRl9QdWJsaWNfVGVuZGVyX1Jlc2VhcmNoXEZyYW1ld29ya1xJbml0QWxsU2V0dGluZ3MueGFtbCoBowEB0gEBAwFqAXsBAk8DvgEOAgEBUAVXDgIBL1gFexICARx8BbwBEAIBAlVKVW0CATJSS1JXAgEwWKUBWLgBAgEtXgt4FgIBHX4JsAEUAgEFuAENuAGvAQIBA2INYt0BAgEmYw13HQIBHoIBC4IB0wECARaDAQuvARsCAQa4AXu4AawBAgEEYkhiVwIBK2KyAWK7AQIBKWLJAWLaAQIBJ2M+Y00CASRpE3QYAgEfggFGggFQAgEaggGpAYIBsQECARmCAb8BggHQAQIBF4MBPIMBRgIBFIkBEawBHAIBB2khaWICASBrF3IgAgEhiwEVnAEgAgEMpAEZqAEeAgEIcEJwUAIBI21DbWoCASKPAReTASoCARCUARebASACAQ2kASekAWQCAQmmAR2mAfkBAgEKkQFKkQFWAgESjwFIjwFrAgERmQFCmQFOAgEPlgFDlgFlAgEOpgGKAaYB9gECAQs=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d2pDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcRnJhbWV3b3JrXEluaXRBbGxTZXR0aW5ncy54YW1sKwGjAQHSAQEDAWoBewECTwPAAQ4CAQFQBVcOAgEwWAV7EgIBHXwFvgEQAgECVUpVbQIBM1JLUlcCATFYpQFYuAECAS5eC3gWAgEefgmyARQCAQW6AQ26Aa8BAgEDYg1i3QECASdjDXcdAgEfggELggHTAQIBF4MBC7EBGwIBBroBe7oBrAECAQRiSGJXAgEsYrIBYrsBAgEqYskBYtoBAgEoYz5jTQIBJWkTdBgCASCCAUaCAVACARuCAakBggGxAQIBGoIBvwGCAdABAgEYgwE8gwFGAgEViQERrgEcAgEHaSFpYgIBIWsXciACASKLARWeASACAQymARmqAR4CAQhwQnBQAgEkbUNtagIBI4wBF50BIgIBDaYBJ6YBZAIBCagBHagB+QECAQqQARmUASwCARGVARmcASICAQ6oAYoBqAH2AQIBC5IBTJIBWAIBE5ABSpABbQIBEpoBRJoBUAIBEJcBRZcBZwIBDw==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -221,8 +223,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="286,370">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="LogMessage_3" sap:VirtualizedContainerService.HintSize="314,91" />
-      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="464,241">
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="464,239">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -238,8 +247,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="418,473" />
-      <sap2010:ViewStateData Id="ForEachRow_3" sap:VirtualizedContainerService.HintSize="448,621">
+      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="418,597" />
+      <sap2010:ViewStateData Id="ForEachRow_3" sap:VirtualizedContainerService.HintSize="448,745">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -247,7 +256,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="470,872">
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="470,996">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -264,7 +273,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="532,1099">
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="532,1223">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -272,7 +281,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="554,2161">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="554,2285">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -280,7 +289,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetAllSettings_1" sap:VirtualizedContainerService.HintSize="594,2241" />
+      <sap2010:ViewStateData Id="GetAllSettings_1" sap:VirtualizedContainerService.HintSize="594,2365" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
