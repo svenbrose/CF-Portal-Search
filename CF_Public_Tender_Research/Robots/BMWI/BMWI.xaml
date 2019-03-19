@@ -75,7 +75,6 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>DocumentFormat.OpenXml</AssemblyReference>
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="BMWI" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -124,7 +123,7 @@
       </TryCatch.Catches>
     </TryCatch>
     <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="iexplore" />
-    <sads:DebugSymbol.Symbol>d2FDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSS54YW1sFVEDgAEOAgEBVwVXbQIBHVgFWLMBAgEYWQV9EAIBBH4FfqcBAgECV1xXagIBHlhKWGYCARtYMFg/AgEZWwlrFAIBBX6aAX6kAQIBA1wLYiMCARBjC2ojAgEGXkheUwIBFl9FX00CARRgYmBtAgESXL8BXOIBAgERZ15neAIBDmhIaFMCAQxmU2ZlAgEKZWJlbQIBCGPAAWPkAQIBBw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d2FDOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSS54YW1sFVADfw4CAQFWBVZtAgEdVwVXswECARhYBXwQAgEEfQV9pwECAQJWXFZqAgEeV0pXZgIBG1cwVz8CARlaCWoUAgEFfZoBfaQBAgEDWwthIwIBEGILaSMCAQZdSF1TAgEWXkVeTQIBFF9iX20CARJbvwFb4gECARFmXmZ4AgEOZ0hnUwIBDGVTZWUCAQpkYmRtAgEIYsABYuQBAgEH</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -164,7 +163,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BMWI_1" sap:VirtualizedContainerService.HintSize="480,1286">
+      <sap2010:ViewStateData Id="BMWI_1" sap:VirtualizedContainerService.HintSize="480,1326">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
