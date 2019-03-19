@@ -68,7 +68,6 @@
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
@@ -87,24 +86,23 @@
         <OutArgument x:TypeArguments="ss:SecureString" x:Key="out_Password">[Password]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Sequence>
-      <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser" Hidden="False" NewSession="True" Private="False" Url="[in_URL]">
+    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" NewSession="True" Private="False" Url="[in_URL]">
         <ui:OpenBrowser.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do">
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize window" sap2010:WorkflowViewState.IdRef="MaximizeWindow_2" />
-              <ui:UiElementExists DisplayName="Element Exists 'A  id1a'" Exists="[CookiesAccept]">
+              <ui:UiElementExists DisplayName="Element Exists 'A  id1a'" Exists="[CookiesAccept]" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
                 <ui:UiElementExists.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1bd2cc65ee653e30c973367706fada7e" Selector="&lt;webctrl id='id1a' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
                 </ui:UiElementExists.Target>
-                <sap2010:WorkflowViewState.IdRef>UiElementExists_5</sap2010:WorkflowViewState.IdRef>
               </ui:UiElementExists>
-              <If Condition="[CookiesAccept]">
+              <If Condition="[CookiesAccept]" sap2010:WorkflowViewState.IdRef="If_4">
                 <If.Then>
-                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  id1a'" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  id1a'" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                     <ui:Click.CursorPosition>
                       <ui:CursorPosition Position="Center">
                         <ui:CursorPosition.OffsetX>
@@ -118,25 +116,20 @@
                     <ui:Click.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1bd2cc65ee653e30c973367706fada7e" Selector="&lt;webctrl id='id1a' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
                     </ui:Click.Target>
-                    <sap2010:WorkflowViewState.IdRef>Click_5</sap2010:WorkflowViewState.IdRef>
                   </ui:Click>
                 </If.Then>
-                <sap2010:WorkflowViewState.IdRef>If_4</sap2010:WorkflowViewState.IdRef>
               </If>
-              <ui:UiElementExists DisplayName="Element Exists 'A  id1a'" Exists="[Maintenance]">
+              <ui:UiElementExists DisplayName="Element Exists 'A  id1a'" Exists="[Maintenance]" sap2010:WorkflowViewState.IdRef="UiElementExists_6">
                 <ui:UiElementExists.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="604dc7f73c5797242a8950fed40b1bc8" Selector="&lt;html title='e-Vergabe: Wartungsarbeiten' /&gt;&lt;webctrl parentid='body-maintainance' tag='SPAN' aaname='Wartungsarbeiten' /&gt;" TimeoutMS="300" WaitForReady="INTERACTIVE" />
                 </ui:UiElementExists.Target>
-                <sap2010:WorkflowViewState.IdRef>UiElementExists_6</sap2010:WorkflowViewState.IdRef>
               </ui:UiElementExists>
-              <WriteLine DisplayName="Write Line" Text="[&quot;Maintenance: &quot; + Maintenance.ToString]" sap2010:WorkflowViewState.IdRef="WriteLine_2" />
-              <If Condition="[Maintenance]">
+              <If Condition="[Maintenance]" sap2010:WorkflowViewState.IdRef="If_5">
                 <If.Then>
                   <Throw DisplayName="Throw Maintenance Window" Exception="[new BusinessRuleException(&quot;Maintenance Window&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_4" />
                 </If.Then>
-                <sap2010:WorkflowViewState.IdRef>If_5</sap2010:WorkflowViewState.IdRef>
               </If>
-              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  idd'" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  idd'" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -150,43 +143,37 @@
                 <ui:Click.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="af7400ae1fc2925419833fdd24637a82" Selector="&lt;webctrl id='idd' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
                 </ui:Click.Target>
-                <sap2010:WorkflowViewState.IdRef>Click_6</sap2010:WorkflowViewState.IdRef>
               </ui:Click>
-              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  email'" EmptyField="False" SendWindowMessages="False" SimulateType="True" Text="[Username]">
+              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  email'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="False" SimulateType="True" Text="[Username]">
                 <ui:TypeInto.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f889303c190b34d3dc8482792032b077" Selector="&lt;webctrl id='id1' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                 </ui:TypeInto.Target>
-                <sap2010:WorkflowViewState.IdRef>TypeInto_3</sap2010:WorkflowViewState.IdRef>
               </ui:TypeInto>
-              <ui:TypeSecureText DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type secure text 'INPUT  password'" EmptyField="False" SecureText="[Password]" SendWindowMessages="False" SimulateType="True">
+              <ui:TypeSecureText DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type secure text 'INPUT  password'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeSecureText_3" SecureText="[Password]" SendWindowMessages="False" SimulateType="True">
                 <ui:TypeSecureText.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bf0e922f89f045abd38ea9cde1e2fd41" Selector="&lt;webctrl id='id2' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                 </ui:TypeSecureText.Target>
-                <sap2010:WorkflowViewState.IdRef>TypeSecureText_3</sap2010:WorkflowViewState.IdRef>
               </ui:TypeSecureText>
-              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
                 <ui:SendHotkey.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                 </ui:SendHotkey.Target>
-                <sap2010:WorkflowViewState.IdRef>SendHotkey_2</sap2010:WorkflowViewState.IdRef>
               </ui:SendHotkey>
-              <ui:UiElementExists DisplayName="Element Exists 'DIV'" Exists="[LogInSuccessful]">
+              <ui:UiElementExists DisplayName="Element Exists 'DIV'" Exists="[LogInSuccessful]" sap2010:WorkflowViewState.IdRef="UiElementExists_7">
                 <ui:UiElementExists.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="3e8c8bf754f1a8b7c8e791c6397d55d4" Selector="&lt;webctrl id='idd' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
                 </ui:UiElementExists.Target>
-                <sap2010:WorkflowViewState.IdRef>UiElementExists_7</sap2010:WorkflowViewState.IdRef>
               </ui:UiElementExists>
-              <If Condition="[Not LogInSuccessful]">
+              <If Condition="[Not LogInSuccessful]" sap2010:WorkflowViewState.IdRef="If_6">
                 <If.Then>
-                  <Sequence DisplayName="Wrong Credentials">
-                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" UnSafe="False" WorkflowFileName="SendEmail.xaml">
+                  <Sequence DisplayName="Wrong Credentials" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="SendEmail.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_Portal" />
                       </ui:InvokeWorkflowFile.Arguments>
-                      <sap2010:WorkflowViewState.IdRef>InvokeWorkflowFile_3</sap2010:WorkflowViewState.IdRef>
                     </ui:InvokeWorkflowFile>
-                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                       <ui:Click.CursorPosition>
                         <ui:CursorPosition Position="Center">
                           <ui:CursorPosition.OffsetX>
@@ -200,23 +187,17 @@
                       <ui:Click.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a9d795669abff5f38c16ea3166f53136" Selector="&lt;webctrl id='id12' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
                       </ui:Click.Target>
-                      <sap2010:WorkflowViewState.IdRef>Click_7</sap2010:WorkflowViewState.IdRef>
                     </ui:Click>
                     <Throw DisplayName="Throw incorrect Credentials" Exception="[New BusinessRuleException(&quot;Incorrect Credentials&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_5" />
-                    <sap2010:WorkflowViewState.IdRef>Sequence_6</sap2010:WorkflowViewState.IdRef>
                   </Sequence>
                 </If.Then>
-                <sap2010:WorkflowViewState.IdRef>If_6</sap2010:WorkflowViewState.IdRef>
               </If>
-              <sap2010:WorkflowViewState.IdRef>Sequence_7</sap2010:WorkflowViewState.IdRef>
             </Sequence>
           </ActivityAction>
         </ui:OpenBrowser.Body>
-        <sap2010:WorkflowViewState.IdRef>OpenBrowser_2</sap2010:WorkflowViewState.IdRef>
       </ui:OpenBrowser>
-      <sap2010:WorkflowViewState.IdRef>Sequence_8</sap2010:WorkflowViewState.IdRef>
     </Sequence>
-    <sads:DebugSymbol.Symbol>d21DOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSV9Qb3J0YWxsb2dpbi54YW1sNUsD3AEOAgEBUwVZHQIBPFoF2gEQAgECV01XVwIBQlZGVlECAUBVRlVQAgE+U7oBU9wBAgE9WwfYARgCAQNbjQFblwECATphDdQBGAIBBGIPYocBAgE5Yw9oJAIBNGkPfRQCAS9+D4MBJAIBKoQBD4QBnQECASeFAQ+KARQCASKLAQ+aARoCASCbAQ+gAR0CARyhAQ+mASMCARinAQ+sAR8CARatAQ+yASQCARGzAQ/SARQCAQVljQFlsgECAThlvQFlwwECATdjUWNiAgE1aR1pLgIBMGsTeh4CATKAAY0BgAGUAgIBLoABnwKAAaQCAgEtflF+YAIBK4QBOIQBbAIBKIUBHYUBLAIBI4cBE4cBtQECASWXAaIBlwHGAQIBIZ0BogGdAcoBAgEfmwH6AZsBhgICAR2jAaIBowHKAQIBG6EB4QGhAe0BAgEZpwG/AacBxgECARevAY0BrwGxAQIBFa8BvAGvAcIBAgEUrQFNrQFgAgESswEdswE0AgEGtQETzwEeAgEId6YBd8sBAgEzhwFLhwGIAQIBJrYBFbwBLQIBDb0BFcwBIAIBC80BFc0BvQECAQm4AWy4AXcCAQ+2AYoBtgGaAQIBDskBqAHJAc0BAgEMzQFQzQGQAQIBCg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d21DOlxVc2Vyc1xzYnJvc2VcRG9jdW1lbnRzXEdpdGh1YlxDRiBQb3J0YWwgU2VhcmNoXENGX1B1YmxpY19UZW5kZXJfUmVzZWFyY2hcUm9ib3RzXEJNV0lcQk1XSV9Qb3J0YWxsb2dpbi54YW1sM0oDyQEOAgEBUgVYHQIBOVkFxwEQAgECVk1WVwIBP1VGVVECAT1URlRQAgE7UroBUtwBAgE6WgfGARgCAQNavQFaxwECATdgDcMBGAIBBGEPYYcBAgE2Yg9mJAIBMWcPeRQCASx6D34kAgEnfw+DARQCASKEAQ+SARoCASCTAQ+XAR0CARyYAQ+cASMCARidAQ+hAR8CARaiAQ+mASQCARGnAQ/CARQCAQVkjQFksgECATVkvQFkwwECATRiUWJiAgEyZx1nLgIBLWkTdx4CAS98jQF8lAICASt8nwJ8pAICASp6UXpgAgEofx1/LAIBI4EBE4EBtQECASWQAaIBkAHGAQIBIZUBogGVAcoBAgEfkwGnApMBswICAR2aAaIBmgHKAQIBG5gBlAKYAaACAgEZnQHuAZ0B9QECARekAY0BpAGxAQIBFaQBvAGkAcIBAgEUogFNogFgAgESpwEdpwE0AgEGqQETwAEeAgEIdaYBdcsBAgEwgQFLgQGIAQIBJqoBFa8BLQIBDbABFb4BIAIBC78BFb8BvQECAQmsAWysAXcCAQ+qAcEBqgHRAQIBDrwBqAG8Ac0BAgEMvwFQvwGQAQIBCg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -226,7 +207,6 @@
       <sap2010:ViewStateData Id="Click_5" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,253" />
       <sap2010:ViewStateData Id="UiElementExists_6" sap:VirtualizedContainerService.HintSize="464,106" />
-      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="464,61" />
       <sap2010:ViewStateData Id="Throw_4" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="464,207" />
       <sap2010:ViewStateData Id="Click_6" sap:VirtualizedContainerService.HintSize="464,106" />
@@ -245,22 +225,22 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,566" />
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="486,2453">
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="486,2352">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_2" sap:VirtualizedContainerService.HintSize="500,2552" />
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="522,2676">
+      <sap2010:ViewStateData Id="OpenBrowser_2" sap:VirtualizedContainerService.HintSize="500,2451" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="522,2575">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="544,2969">
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="544,2868">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -268,7 +248,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Portallogin_1" sap:VirtualizedContainerService.HintSize="602,3580">
+      <sap2010:ViewStateData Id="Portallogin_1" sap:VirtualizedContainerService.HintSize="584,2988">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
